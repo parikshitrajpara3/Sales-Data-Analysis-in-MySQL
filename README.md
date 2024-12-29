@@ -1,42 +1,71 @@
-This SQL script addresses diverse aspects of database management, performance optimization, and analytical reporting for a hardware company. 
-Below is a breakdown of key sections:
+# Hardware Company Sales Analytics SQL Project
 
-### Problem Statement and Pre-Invoice Discount Report
-- Detailed reports on sales data with pre-invoice deductions.
-- Two versions: specific to a customer and fiscal year, and inclusive of all customers for a given fiscal year.
+## Overview
+Advanced SQL implementation for analyzing and optimizing sales data for a hardware company, featuring performance-tuned queries, stored procedures, and analytical views for business intelligence reporting.
 
-### Performance Improvement #1
-- Creates 'dim_date' table for enhanced query efficiency.
-- Elimination of 'get_fiscal_year()' function to reduce query execution time.
+## Database Structure
+- 10 interconnected tables
+- 2M+ records
+- Key tables include:
+  - fact_sales_monthly
+  - fact_gross_price
+  - fact_pre_invoice_deductions
+  - fact_post_invoice_deductions
+  - dim_product
+  - dim_customer
+  - dim_date
 
-### Performance Improvement #2
-- Addition of the fiscal year directly to 'fact_sales_monthly' table for optimized query performance.
+## Technical Implementation
 
-### Database Views: Introduction
-- Introduction of database views.
-- Generation of 'net_invoice_sales' amount using CTEs.
-- Creation of 'sales_preinv_discount' view to store data as a virtual table.
+### Performance Optimization
+1. Query Performance Improvements:
+   - Implemented dimensional modeling using date dimension table
+   - Added fiscal year column to fact tables reducing function calls
+   - Optimized JOIN operations for faster data retrieval
 
-### Database Views: Post Invoice Discount, Net Sales
-- Creation of 'sales_postinv_discount' view with post-invoice deductions.
-- Establishment of 'net_sales' view utilizing previous views for ultimate net sales figures.
+### Advanced SQL Features Implemented
+1. Common Table Expressions (CTEs):
+   - Net sales calculations
+   - Customer-wise sales distribution
+   - Regional performance analysis
 
-### Top Markets and Customers
-- Queries to identify top markets and customers by net sales.
-- Introduction of stored procedures for dynamic retrieval of top markets and customers.
+2. Window Functions:
+   - ROW_NUMBER, RANK, DENSE_RANK for sales analysis
+   - OVER clause with PARTITION BY for market share calculations
+   - Running totals and percentages
 
-### Window Functions: OVER Clause
-- Window functions with 'OVER' clause for percentage calculations and per-category distributions.
-- Demonstration of window functions in generating cumulative expenses.
+3. Views:
+   - sales_preinv_discount
+   - sales_postinv_discount
+   - net_sales
 
-### Window Functions: Using it In a Task
-- Window functions to determine customer-wise net sales percentage contributions for a specific fiscal year.
+4. Stored Procedures:
+   - get_top_n_markets_by_net_sales
+   - get_top_n_customers_by_net_sales
+   - get_top_n_products_per_division_by_qty_sold
 
-### Exercise: Window Functions: OVER Clause
-- Exercise to find customer-wise net sales distribution per region for a given fiscal year.
+### Key Features
+- Pre and post-invoice discount analysis
+- Market and customer segmentation
+- Product division performance tracking
+- Fiscal year-based reporting
+- Customer net sales distribution
 
-### Window Functions: ROW_NUMBER, RANK, DENSE_RANK
-- Examples of using 'ROW_NUMBER', 'RANK', and 'DENSE_RANK' to extract top expenses and rank student marks.
-- Query to identify top products from each division based on total quantity sold.
+## Business Impact
+- Automated sales performance reporting
+- Enhanced data retrieval efficiency
+- Streamlined analytical processes
+- Improved decision-making capabilities
 
-This script provides a comprehensive approach to database management and analytics using SQL, offering insights into performance optimization techniques and the utilization of window functions. Feel free to incorporate and customize these SQL queries based on your specific requirements.
+## Skills Demonstrated
+- Complex SQL query optimization
+- Database performance tuning
+- ETL process design
+- Business intelligence reporting
+- Data modeling
+
+## Future Enhancements
+- Additional performance optimization
+- Enhanced reporting capabilities
+- Automated ETL processes
+- Advanced analytics integration
